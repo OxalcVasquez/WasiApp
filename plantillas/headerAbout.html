@@ -1,0 +1,29 @@
+ <div class="hs-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <nav class="nav-menu">
+                    <ul>
+                        <li ><a href="{% url 'home' %}">Inicio</a></li>
+                           <li><a href="{% url 'propiedades' %}">Propiedades</a>
+                             <ul class="dropdown">
+                                <li><a href="{% url 'propiedades:tipo' %}">Tipos de propiedad</a></li>
+                            </ul>
+                        </li>
+                        <li  class="active"><a href="{% url 'about' %}">Sobre</a></li>
+                        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="hn-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

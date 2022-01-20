@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block page_title %}
+    Registro
+{% endblock page_title %}
+
+
+{% block content %}
+    <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
+        {% include 'mixins/auth/auth_form.html' with form=form cta='Registrarse'%}
+        <div class="mt-5">
+            <span class="mr-2">Tienes una cuenta?</span>
+            <a href="{% url 'usuarios:login' %}" class="text-teal-500 font-medium">Entrar</a>
+        </div>
+    </div>
+{% endblock content %}

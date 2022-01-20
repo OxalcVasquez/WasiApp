@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% block page_title %}
+    Conversacion
+{% endblock page_title %}
+{% block content %}
+
+    <div class="container mx-auto my-10 mt-32 flex justify-between min-h-50vh">
+
+        <div class="border w-1/4 p-10">
+            <span class="text-center w-full block text-lg font-medium">Chat Wasi</span>
+            <div class="flex justify-between mt-10 items-center">
+                {% for user in conversacion.participantes.all  %}
+                    <div class="flex flex-col items-center">
+                        {% include "mixins/user_avatar.html" with user=user %}
+                        <span class="mt-2 text-gray-500">{{user.first_name}}</span>
+                    </div>
+                    {% if forloop.first %}
+                      <span class="font-medium text-2xl">&</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="flex-grow">
+        <div class="border  ml-10 p-10 flex flex-col">
+                {% if conversacion.mensajes.count == 0 %}
+                    Ningun mensaje
+                {% else %}
+                    {% for mensaje in conversacion.mensajes.all  %}
+                        <div class="mb-10 {% if mensaje.usuario.pk == user.pk %}
+                            self-end
+                            text-right
+                        {% endif %}">
+                            <span class="text-sm font-medium text-gray-600">{{mensaje.usuario.first_name}}</span>
+                            <div class="mt-px p-3 w-56 rounded
+                                {% if mensaje.usuario.pk != user.pk %}
+                                    bg-teal-500
+                                    text-white
+                                {% else %}
+                                    bg-gray-300
+                                {% endif %}
+                            ">
+                                {{mensaje.mensaje}}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+            <form class="mt-10 w-1/2 mx-auto" method="POST">
+                {% csrf_token %}
+                <input class="border-box mb-5" name="mensaje" placeholder="Escribe tu mensaje" required />
+                <button class="btn-link bg-teal-500 text-white">Enviar</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock content %}

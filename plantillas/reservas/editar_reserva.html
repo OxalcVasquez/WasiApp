@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block page_title %}
+    Editar propiedad
+{% endblock page_title %}
+{% block content %}
+    <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
+        <form method="POST" action="{% url 'reservas:actualizar' reserva.pk %}" class="w-full" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if reserva %}
+            <input type="date" name="check_out" id=" " value="{{reserva.check_out}}">
+            <button class="btn bg-teal-500 text-white mt-2">Actualizar</button>
+            {% endif %}
+        </form>
+    </div>
+{% endblock content %}

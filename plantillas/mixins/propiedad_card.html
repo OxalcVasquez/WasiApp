@@ -1,0 +1,14 @@
+<div class="w-1/4 mb-10 px-2 overflow-hidden">
+    <a href="{% url 'propiedades:detail' propiedad.pk %}">
+        <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2 " style="background-image: url('{{ propiedad.primera_foto.archivo.url}}')"></div>
+        <div class="flex justify-between mb-2 truncate">
+            <div class="w-4/5 overflow-hidden flex">
+                <span class="text-sm text-gray-600 block truncate">{{propiedad.ciudad}}, {{propiedad.pais.name}}</span>
+            </div>
+            <span class="text-sm flex items-center">
+                <i class="fa fa-star text-teal-500 text-xs mr-1"></i> {{propiedad.puntaje_total}}
+            </span>
+        </div>
+        <span class="text-black w-11/12 block truncate">{{propiedad.nombre}}</span>
+    </a>
+</div>

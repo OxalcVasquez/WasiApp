@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+    {% block content %}
+        {% include 'headerAbout.html' %}
+    <!-- Inicio de la sección de migas de pan  -->
+    <section class="breadcrumb-section spad set-bg" data-setbg="../static/img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h4>Sobre nosotros</h4>
+                        <div class="bt-option">
+                            <a href="{% url 'home' %}"><i class="fa fa-home"></i> Inicio</a>
+                            <span>Sobre Nosotros</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Extremo de la sección de migas de pan  -->
+
+    <!-- Acerca de la sección Begin-->
+    <section class="about-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-text">
+                        <div class="at-title">
+                            <h3>Bienvenidos a ..</h3>
+                            <p style="text-align:justify">Somos una compañia dedicada a a la oferta de alojamientos a particulares y turísticos (alquiler vacacional) del todo el Perú mediante la cual los anfitriones pueden publicitar y contratar el arriendo de sus propiedades con sus huéspedes. </p>
+                        </div>
+                        <div class="at-feature">
+                            <div class="af-item">
+                                <div class="af-icon">
+                                    <img src="../static/img/chooseus/chooseus-icon-1.png" alt="">
+                                </div>
+                                <div class="af-text">
+                                    <h6>Una comunidad basada en compartir</h6>
+                                    <p>En la actualidad, millones de anfitriones y viajeros optan por publicar sus espacios y reservar alojamientos únicos en todo el Perú.</p>
+                                </div>
+                            </div>
+                            <div class="af-item">
+                                <div class="af-icon">
+                                    <img src="../static/img/chooseus/chooseus-icon-2.png" alt="">
+                                </div>
+                                <div class="af-text">
+                                    <h6>Asistencia 24/7</h6>
+                                    <p>Contamos con un equipo de atención al cliente 24/7 en 11 idiomas.</p>
+                                </div>
+                            </div>
+                            <div class="af-item">
+                                <div class="af-icon">
+                                    <img src="../static/img/chooseus/chooseus-icon-3.png" alt="">
+                                </div>
+                                <div class="af-text">
+                                    <h6>Reserva tu vivienda ideal</h6>
+                                    <p>Millones de casas y apartamentos en tus ciudades favoritas</p>
+                                </div>
+                            </div>
+                            <div class="af-item">
+                                <div class="af-icon">
+                                    <img src="../static/img/chooseus/chooseus-icon-4.png" style="border: 10% green" alt="">
+                                </div>
+                                <div class="af-text">
+                                    <h6>Incluya su propia propiedad</h6>
+                                    <p>Regístrese ahora y alquile sus propias propiedades</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-pic set-bg" data-setbg="../static/img/testimonial-author/CAPTURA.jpg" style="position: relative; top: 13%">
+                        <!-- <a href="../static/img/media/video_promocional.mp4" class="play-btn video-popup">
+                            <i class="fa fa-play-circle"></i>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Acerca del final de la sección -->
+    {% include 'quedicen.html' %}
+
+
+{% endblock content %}

@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+
+{% block page_title %}
+    Reserva {{ reserva.check_in }}
+{% endblock page_title %}
+
+
+{% block content %}
+
+    <div class="container mx-auto my-10 flex flex-col">
+
+        <div class="border-t border-l border-r bg-cover bg-center h-56 rounded-t-lg"
+             style="background-image: url('{{ reserva.propiedad.primera_foto.archivo.url}}');"></div>
+
+        <div class="flex flex-col items-start border-l border-r border-t border-b">
+            <div class="font-medium border-b py-8 px-5 w-full">
+                {{ reserva.check_in }} - {{ reserva.check_out }} <span class="ml-5 {% if reserva.estado == 'pendiente' %}
+                 text-yellow-600
+                {% elif reserva.estado == 'cancelado' %}
+                text-red-600 {% else %} text-teal-600
+                {% endif %} ">{{ reserva.get_estado_display }}
+            </span>
+                <span class="ml-5
+                 text-teal-600
+                ">  Huésped: <a href="{{ reserva.huesped.get_absolute_url }}"class="text-teal-600">{{reserva.huesped.first_name}} {{reserva.huesped.last_name}} </a></span>
+
+            </div>
+            <span class="text-2xl border-b p-5 mt-2 w-full">
+                {{ reserva.propiedad.nombre }}
+            </span>
+            {% if reserva.propiedad.host != user and not reserva.finalizado  and not reserva.estado == 'cancelado' %}
+
+             <div class="text-2xl border-b p-5 mt-2 w-full">
+                 <a href="{% url 'reservas:editar' reserva.pk %}" class="btn-link bg-teal-500 block text-white">Ampliar Reserva</a>
+            </div>
+            {% endif %}
+
+            {% if reserva.propiedad.host != user %}
+            <div class="flex p-5 border-b w-full">
+                <div class="flex flex-col items-center">
+                    {% include "mixins/user_avatar.html" with user=reserva.propiedad.host %}
+                    <span class="mt-2 text-gray-500">{{ reserva.propiedad.host.first_name }}</span>
+                </div>
+                <div class="ml-5 flex flex-col">
+                    <span class="font-medium mb-px">Contacta con tu host de Wasi</span>
+                    <a href="{% url 'conversaciones:ir' reserva.propiedad.host.pk reserva.huesped.pk %}" class="font-medium text-teal-500">Enviar mensaje</a>
+
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="py-10 px-5">
+            {% if reserva.estado != 'cancelado'%}
+                {% if reserva.estado == 'confirmado' and reserva.finalizado and reserva.propiedad.host != user %}
+                    <span class="font-medium text-2xl text-center w-full block mb-5">Escribe tu reseña</span>
+                   <form action="{% url 'resenas:crear' reserva.propiedad.pk %}" method="POST" class="w-1/2 mx-auto">
+                       {% csrf_token %}
+                       {{form}}
+                       <button class="btn-link bg-teal-500 text-white mt-5">Enviar Reseña</button>
+                   </form>
+                {% else %}
+                    {% if reserva.estado == 'pendiente' %}
+                        <form method="POST" action="{% url 'reservas:cancelar' reserva.pk %}">
+                            {% csrf_token %}
+                            <input type="submit" name="cancelar" class="btn-link bg-orange-500 block px-3 mb-5 text-white" value="Cancelar"/>
+                        </form>
+
+                        <!-- <a href="reservas:cancelar reserva.id" class="btn-link block px-3 mb-5">Cancelar reserva</a> -->
+                        {% if reserva.propiedad.host == user %}
+                            <form method="GET" action="{% url 'reservas:confirmar' reserva.pk %}">
+                                {% csrf_token %}
+                                <input type="submit" name="confirmar" class="btn-link text-white block px-3 mb-5" value="Confirmar"/>
+                            </form>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

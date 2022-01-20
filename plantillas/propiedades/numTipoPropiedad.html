@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    {% include 'headerPropiedades.html' %}
+<!-- Categories Section Begin -->
+
+<section class="breadcrumb-section spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg'  %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h4>Propiedades</h4>
+                    <div class="bt-option">
+                        <a href="{% url 'home' %}"><i class="fa fa-home"></i> Inicio</a>
+                        <span>Propiedades</span>
+                        <span>-Tipo Propiedad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="categories-section">
+    <div class="cs-item-list">
+        {% if tipos %} {% for tipo in tipos %}
+        <div class="cs-item set-bg" data-setbg="../../static/img/categories/{{tipo.name}}.jpg">
+            <div class="cs-text">
+                <h5><a href="{% url 'propiedades:tipoPropiedad' tipo.pk %}" class="text-dark">{{tipo.name}}</a></h5>
+                <span>{{tipo.Propiedades.count}} {% if tipo.Propiedades.count == 1 %} Propiedad {% else %} Propiedades {% endif %}</span>
+            </div>
+        </div>
+          {% endfor %} {% endif %}
+    </div>
+</section>
+
+<div class="logo-carousel">
+    <div class="container">
+        <div class="lc-slider owl-carousel">
+            <a href="#" class="lc-item">
+                <div class="lc-item-inner">
+                    <img src="../../static/img/logo-carousel/lc-1.png" alt="">
+                </div>
+            </a>
+            <a href="#" class="lc-item">
+                <div class="lc-item-inner">
+                    <img src="../../static/img/logo-carousel/lc-2.png" alt="">
+                </div>
+            </a>
+            <a href="#" class="lc-item">
+                <div class="lc-item-inner">
+                    <img src="../../static/img/logo-carousel/lc-3.png" alt="">
+                </div>
+            </a>
+            <a href="#" class="lc-item">
+                <div class="lc-item-inner">
+                    <img src="../../static/img/logo-carousel/lc-4.png" alt="">
+                </div>
+            </a>
+            <a href="#" class="lc-item">
+                <div class="lc-item-inner">
+                    <img src="../../static/img/logo-carousel/lc-5.png" alt="">
+                </div>
+            </a>
+            <a href="#" class="lc-item">
+                <div class="lc-item-inner">
+                    <img src="../../static/img/logo-carousel/lc-6.png" alt="">
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% include 'elegirnos.html' %}
+{% include 'contactanos.html' %}
+
+<!-- Categories Section End -->
+{% endblock content %}

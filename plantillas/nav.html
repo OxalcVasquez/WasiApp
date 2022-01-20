@@ -1,0 +1,42 @@
+{% load static %}
+<!-- <ul class="">
+    {% if user.is_authenticated %}
+        <li class="nav_link"><a class="text-dark" href="{% url 'usuarios:switch-hosting' %}">{% if request.session.is_hosting %}
+        Dejar hosting {% else %}Iniciar Hosting
+        {% endif %} </a></li>
+        {% if request.session.is_hosting %}
+        <li class="nav_link"><a class="text-dark" href="{% url 'propiedades:registrar' %}">Subir Propiedad</a></li>
+        {% endif %}
+        <li class="nav_link"><a class="text-dark" href="{{ user.get_absolute_url }}">Perfil</a></li>
+        <li class="nav_link"><a class="text-dark" href="{% url 'usuarios:logout' %}">Salir</a></li>
+    {% else %}
+        <li class="nav_link"><a href="{% url "usuarios:login" %}">Entrar</a></li>
+        <li class="nav_link"><a href="{% url "usuarios:signup" %}">Registrarse</a></li>
+    {% endif %}
+
+</ul> -->
+
+<div class="hs-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="nav-menu">
+                    <ul class="">
+                        {% if user.is_authenticated %}
+                            <li class=""><a class="text-dark" href="{% url 'usuarios:switch-hosting' %}">{% if request.session.is_hosting %}
+                            Dejar hosting {% else %}Iniciar Hosting
+                            {% endif %} </a></li>
+                            {% if request.session.is_hosting %}
+                            <li class=""><a class="text-dark" href="{% url 'propiedades:registrar' %}">Subir Propiedad</a></li>
+                            {% endif %}
+                            <li class=""><a class="text-dark" href="{{ user.get_absolute_url }}">Perfil</a></li>
+                            <li class=""><a class="text-dark" href="{% url 'usuarios:logout' %}">Salir</a></li>
+                        {% else %}
+                            <li class=""><a href="{% url "usuarios:login" %}">Entrar</a></li>
+                            <li class=""><a href="{% url "usuarios:signup" %}">Registrarse</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block page_title %}
+    Fotos de {{ propiedad.nombre }}
+{% endblock page_title %}
+
+{% block content %}
+    <div class="container mx-auto my-10 flex flex-col">
+        <div class="my-10 w-full">
+            <a href="{% url 'propiedades:add-foto' propiedad.pk %}" class="btn-link bg-teal-500 text-white w-1/6 block">Subir fotos</a>
+        </div>
+        {% for foto in propiedad.fotos.all %}
+            <div class="mb-5 border p-6 border-gray-400 flex justify-between">
+                <div class="flex items-start">
+                    <img src="{{ foto.archivo.url }}" class="w-32 h-32" alt="{{ foto.descripcion }}"/>
+                    <span class="ml-5 text-xl">{{ foto.descripcion }}</span>
+                </div>
+                <div class="flex flex-col w-1/5">
+                    <a href="{% url 'propiedades:edit-foto' propiedad.pk foto.pk %}" class="btn-link mb-5 bg-teal-500 text-white">Editar</a>
+                    <a href="{% url 'propiedades:eliminar-foto' propiedad.pk foto.pk %}" class="btn-link mb-5 bg-red-600 text-white">Eliminar</a>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="flex justify-center">
+            <a href="{% url 'propiedades:editar'  propiedad.pk %}" class="text-teal-500 font-medium text-xl">Regresar a edicion de propiedad</a>
+        </div>
+
+    </div>
+{% endblock content %}

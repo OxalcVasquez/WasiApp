@@ -1,0 +1,243 @@
+<section class="hero-section">
+  <div class="container">
+    <div class="hs-slider owl-carousel">
+      {% if propiedades %} {% for propiedad in propiedades %}
+
+      <div class="hs-item set-bg" data-setbg="{{propiedad.primera_foto.archivo.url}}">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="hc-inner-text">
+              <div class="hc-text">
+                <!-- <h4>{{propiedad.nombre}}</h4> -->
+                 <h4><a href="propiedades/{{propiedad.pk}}">{{propiedad.nombre}}</a></h4>
+
+                <p><span class="icon_pin_alt"></span>{{propiedad.direccion}}</p>
+                <div class="label">{{propiedad.tipoPropiedad}}</div>
+                <h5><span>{{propiedad.precio}}/Día</span></h5>
+              </div>
+              <div class="hc-widget">
+                <ul>
+                  <li><i class="fa fa-object-group"></i>{{propiedad.numCuartos}}</li>
+                  <li><i class="fa fa-bathtub"></i> {{propiedad.numBano}}</li>
+                  <li><i class="fa fa-bed"></i> {{propiedad.numCamas}}</li>
+                  <li><i class="fa fa-male"></i> {{propiedad.numMaxHuspedes}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% endif %}
+
+    </div>
+  </div>
+</section>
+<!-- Hero Section End -->
+
+<!-- Search Section Begin -->
+<section class="search-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="section-title">
+          <h4>Donde te gustaría hospedarte?</h4>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="change-btn">
+          <div class="cb-item">
+            <label for="cb-rent" class="active">
+              Elija sus preferencias
+              <input type="radio" id="cb-rent" />
+            </label>
+          </div>
+          <!-- <div class="cb-item">
+            <label for="cb-sale">
+              For Sale
+              <input type="radio" id="cb-sale" />
+            </label>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="search-form-content">
+      <form action="{% url 'propiedades:busqueda' %}" class="filter-form" method="post" >
+        {% csrf_token %}
+        <select class="sm-width" name="tipoProp">
+          <option value="" disabled selected>Tipo Propiedad</option>
+           {% if tipos %} {% for tipo in tipos %}
+           <option value="{{tipo.pk}}">{{tipo.name}}</option>
+
+          {% endfor %} {% endif %}
+        </select>
+        <select class="sm-width"  name="numCuartos">
+          <option value="" disabled selected>Número de cuartos</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <select class="sm-width" name="numBanos">
+          <option value="" disabled selected>Número de baños</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <select class="sm-width" name="numHuespeds">
+          <option value="" disabled selected>Número de huspedes</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="10">10</option>
+        </select>
+        <button type="submit" class="search-btn sm-width">Buscar</button>
+      </form>
+    </div>
+    <!-- <div class="more-option">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-heading active">
+            <a data-toggle="collapse" data-target="#collapseOne">
+              Más Opciones
+            </a>
+          </div>
+          <div
+            id="collapseOne"
+            class="collapse"
+            data-parent="#accordionExample"
+          >
+            <div class="card-body">
+              <div class="mo-list">
+                <div class="ml-column">
+                  <label for="air"
+                    >Mascotas permitidas
+                    <input type="checkbox" id="air" />
+                    <span class="checkbox"></span>
+                  </label>
+                  <label for="lundry"
+                    >Internet
+                    <input type="checkbox" id="lundry" />
+                    <span class="checkbox"></span>
+                  </label>
+                  <label for="refrigerator"
+                    >Estacionamiento
+                    <input type="checkbox" id="refrigerator" />
+                    <span class="checkbox"></span>
+                  </label>
+                  <label for="washer"
+                    >Cocina
+                    <input type="checkbox" id="washer" />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+                <div class="ml-column">
+                  <label for="barbeque"
+                    >Sala
+                    <input type="checkbox" id="barbeque" />
+                    <span class="checkbox"></span>
+                  </label>
+                  <label for="lawn"
+                    >Lavanderia
+                    <input type="checkbox" id="lawn" />
+                    <span class="checkbox"></span>
+                  </label>
+                  <label for="sauna"
+                    >TV Cable
+                    <input type="checkbox" id="sauna" />
+                    <span class="checkbox"></span>
+                  </label>
+                  <label for="wifi"
+                    >Aire Acondicionado
+                    <input type="checkbox" id="wifi" />
+                    <span class="checkbox"></span>
+                  </label>
+                </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+<!-- Search Section End -->
+
+<!-- Property Section Begin -->
+<section class="property-section latest-property-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="section-title">
+          <h4>PROPIEDADES</h4>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="property-controls">
+          <ul>
+            <li data-filter="all">TODOS</li>
+            {% if tipos %} {% for tipo in tipos %}
+            <li data-filter=".{{tipo.name}}">{{tipo.name}}</li>
+            {% endfor %} {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row property-filter ">
+      {% if propiedades %} {% for propiedad in propiedades %}
+
+      <div class="col-lg-4 col-md-6 mix all {{propiedad.tipoPropiedad}}">
+        <div class="property-item">
+          <div
+            class="pi-pic set-bg"
+            data-setbg="{{propiedad.primera_foto.archivo.url}}"
+          >
+            <div class="label">{{propiedad.tipoPropiedad}}</div>
+          </div>
+          <div class="pi-text">
+            <a href="#" class="heart-icon"
+              ><span class="icon_heart_alt"></span
+            ></a>
+            <div class="pt-price">S/ {{propiedad.precio}}<span>/Día</span></div>
+            <h5><a href="propiedades/{{propiedad.pk}}">{{propiedad.nombre}}</a></h5>
+            <p>
+              <span class="icon_pin_alt"></span> {{propiedad.direccion}}
+            </p>
+            <ul>
+              <li><i class="fa fa-object-group"></i>{{propiedad.numCuartos}}</li>
+              <li><i class="fa fa-bathtub"></i> {{propiedad.numBano}}</li>
+              <li><i class="fa fa-bed"></i> {{propiedad.numCamas}}</li>
+              <li><i class="fa fa-male"></i> {{propiedad.numMaxHuspedes}}</li>
+            </ul>
+            <div class="pi-agent">
+              <div class="pa-item">
+                <div class="pa-info">
+                 {% if propiedad.host.avatar %}
+                      <div class="{{ h_and_w|default:'h-12 w-12' }} rounded-full bg-cover"
+                           style="background-image:  url( '{{ propiedad.host.avatar.url }}')">
+                  {% else %}
+                      <div class="{{ h_and_w|default:'h-12 w-12' }} bg-teal-400 rounded-full text-white flex justify-center items-center overflow-hidden">
+                      <span class="{{ text|default:'text-3xl' }}"> {{ propiedad.host.first_name|first }} </span>
+                  {% endif %}
+                  </div>
+                  <h6>{{propiedad.host.first_name}} {{propiedad.host.last_name}}</h6>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% endif %}
+
+    </div>
+  </div>
+</section>
+<!-- Property Section End -->
+
+<!-- Chooseus Section Begin -->
